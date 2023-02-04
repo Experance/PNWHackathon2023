@@ -1,4 +1,27 @@
 body{
     height: 450px;
     width: 280px;
+    overflow:scroll;
 }
+div.buttons{
+    display: inline-block;
+}
+label:hover{
+    box-shadow: 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    transition-duration: 600ms;
+}
+input{
+    vertical-align: middle;
+    position: relative;
+}
+
+#box:checked + label {
+    background: #fffc47;
+}
+
+div.data{
+    display:flex;
+    flex-direction: column;
+}
+
