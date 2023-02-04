@@ -7,8 +7,8 @@ window.onload=function main() {
     $("startprocess").addEventListener("click", (event) => {
         start(true);
     });
-    document.getElementById("code").onclick = switchToSchool;
-    document.getElementById("school").onclick = switchToCode;
+    document.getElementById("code").onclick = switchToCode;
+    document.getElementById("school").onclick = switchToSchool;
 }
 function switchToSchool(){
     location.href = "school.html";
