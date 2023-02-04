@@ -3,7 +3,7 @@
     "name": "Folders",
     "version": "1",
     "description": "putting links in folder when studying",
-    "permissions": ["activeTab", "scripting", "webNavigation", "tabs", "storage", "unlimitedStorage"],
+    "permissions": ["activeTab", "scripting", "webNavigation", "tabs", "storage", "unlimitedStorage", "contextMenus", "notifications"],
     "action": { 
         "default_popup": "popup.html"
     },
