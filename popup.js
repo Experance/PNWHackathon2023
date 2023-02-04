@@ -7,8 +7,16 @@ window.onload=function main() {
     $("startprocess").addEventListener("click", (event) => {
         start(true);
     });
+    document.getElementById("code").onclick = switchToSchool;
+    document.getElementById("school").onclick = switchToCode;
+}
+function switchToSchool(){
+    location.href = "school.html";
 }
 
+function switchToCode(){
+    location.href = "code.html";
+}
 // function for when the start/stop button is clicked (also saves data after closure)
 function start(name) {
     if (name) { 
