@@ -1,0 +1,13 @@
+{
+    "manifest_version": 3,
+    "name": "Folders",
+    "version": "1",
+    "description": "putting links in folder when studying",
+    "permissions": ["activeTab", "scripting", "webNavigation", "tabs", "storage", "unlimitedStorage"],
+    "action": { 
+        "default_popup": "popup.html"
+    },
+    "background": {
+        "service_worker": "background.js"  
+    }
+}
