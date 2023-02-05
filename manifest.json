@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Folders",
+    "name": "Linkpiler",
     "version": "1",
     "description": "putting links in folder when studying",
     "permissions": ["activeTab", "scripting", "webNavigation", "tabs", "storage", "unlimitedStorage", "contextMenus", "notifications"],
