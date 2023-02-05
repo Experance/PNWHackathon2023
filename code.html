@@ -14,32 +14,35 @@
   </head>
   
   <body>
-    <div>
-      <div class="buttons">
+    <div class="buttons">
+      <div>
         <button id="back">Back</button>
       </div>
-      <div class="buttons">
+      <div>
         <button id="openall">OpenAllLinks</button>
       </div>
-      <div class="buttons">
+      <div>
         <button id="openselect">OpenSelectLinks</button>
       </div>
     </div>
     <br>
     <div class="data">
-      <span>
-        <input type="checkbox" id="box" class="check"/>
-        <label for="box" class="links">www.youtube.com</label>
+      <span id="www.youtube.com">
+        <input type="checkbox" id="1" class="check"/>
+        <label for="1" class="links">www.youtube.com</label>
+        <div class="delete" id="www.youtube.com" onClick="minusSpan(this.id)">x</div>
       </span>
       <br>
-      <span>
-        <input type="checkbox" id="box" class="check"/>
-        <label for="box" class="links">www.google.com</label>
+      <span id="www.google.com">
+        <input type="checkbox" id="2" class="check"/>
+        <label for="2" class="links">www.google.com</label>
+        <div class="delete" id="www.google.com" onClick="minusSpan(this.id)">x</div>
       </span>
       <br>
-      <span>
-        <input type="checkbox" id="box" class="check"/>
-        <label for="box" class="links">www.wikipedia.com</label>
+      <span id="www.wikipedia.com">
+        <input type="checkbox" id="3" class="check"/>
+        <label for="3" class="links">www.wikipedia.com</label>
+        <div class="delete" id="www.wikipedia.com" onClick="minusSpan(this.id)">x</div>
       </span>  
     </div>
     

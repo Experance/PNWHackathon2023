@@ -1,4 +1,5 @@
 window.onload = function(){
+    sessionStorage.setItem("items", 0);
     document.getElementById("back").onclick = goBack;
     document.getElementById("openselect").onclick = selected;
     document.getElementById("openall").onclick = allSelected;
@@ -24,5 +25,18 @@ function allSelected(){
         let str = "https://" + links[i].innerHTML;
         window.open(str, "_blank");
     }
+}
+function minusSpan(str){
+    // If statement used so user can't delete extra divs.
+    console.log(document.getElementsByTagName().getElementById(str).remove())
+    /*
+    chrome.storage.sync.get("listwebs", function(data){
+        for(var j = 0; j < data.listwebs.length; j++){
+            chrome.storage.sync.remove(data.listwebs[j]);
+        }
+    })
+    */
+   
+    
 }
 
