@@ -1,37 +1,75 @@
 body{
     height: 450px;
     width: 280px;
+    overflow:auto;
 }
-/* styles the position [of overlapping divs] for the start button */
-#startbutton {
+
+div.folder{
+    padding-right:3cm;
+    padding-top:0cm;
+    padding-left:0cm;
+    padding-bottom:3cm;
+    background-image: url("folder2.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.folder:hover{
+    box-shadow: 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    transition-duration: 500ms;
+}
+.selections{
+    display:flex;
+    justify-content: space-around;
+}
+.text{
+    text-align:center;
+    font-weight:bold;
+    font-size:large;
+}
+.homepage{
+    text-align:center;
+    font-size:x-large;
+    font-weight:bold;
+
+}
+.continue{
+    font-weight:100;
+    font-size:small;
+    padding-top: 3cm;
+    padding-bottom: 3cm;
+}
+.header{
+    display:flex;
+    justify-content:space-between;
+    flex-direction: row;
+}
+
+/* styling for top of popup (img and settings btn) */
+header {
     display: flex;
-    justify-content: center;
-    position: relative;
-    top: 25px;
+    align-items: center;
+    justify-content: space-between;
 }
 
-/* styles the color and border etc. for the start button */
-#startprocess {
-    background-color: rgb(21, 192, 21);
-    color: black;
-    border-radius: 30px;
-    font-size: 45px;
-    border: 5px solid black;
-    box-shadow: 3px 3px 1px grey;
-
+/* styles the settings button */
+#settings {
+    opacity: 0.5;
 }
 
-/* above but on hover */
-#startprocess:hover {
-    transition-duration: 0.5s;
-    border: 5px solid green;
-    background-color: rgb(138, 249, 138);
-    color: black;
+/* styles the settings button on hover */
+#settings:hover {
+   opacity: 1;
+   
+    
+} 
+
+/* styles the settings button when active */
+#settings:active {
+    
+    transition-duration: 0s;
+    transform: translateY(2px);
+    
 }
 
-/* above but when it's active (clicked) */
-#startprocess:active {
-    transition-duration: 0.01s;
-    transform: translate(1px, 4px);
-    box-shadow: .5px .5px 0.25px black;
-}
+
