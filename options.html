@@ -1,0 +1,92 @@
+<!-- HTML file for the settings page-->
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-platform="chromium" data-application="chrome" data-store="chrome"></html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    
+    <title id="title">
+        Linkpiler - The Organizer of Links
+    </title>
+    
+
+    <link href="options.css" rel="stylesheet" type="text/css" />
+    
+    <script src="options.js"></script>
+
+
+    <div class="tab">
+        <h2 id="word">Linkpiler Settings</h2>
+        <button class="subtab" id="AbtPg" role="tabpanel">About</button>
+        <button class="subtab" id="WebBlk" role="tabpanel">Add/Remove Websites</button>
+        <button class="subtab" id="Setngs" role="tabpanel">Configure</button>
+    </div>
+
+    
+    <div id="AboutPage" class="subtabinfo"> 
+        <h1>About Page</h1>
+        <p id="explain">This extension allows you to organize websites you encounter. Currently, there are 5 pre-built 
+            folders and they are Coding, School, Social Media, Entertainment, and Miscellaneous. You may add folders that 
+            you want to the popup itself. 
+            
+            To add/remove links to/from folders, you can either use this webpage (click on the 
+            "Websites Added") tab or right click and add/remove from the Linkpiler context menu. However, right clicking to
+            add/remove websites will only work for the pre-built folders due to the fact that it was much too complicated to 
+            add that functionality to user-added folders with the time alloted to finish this project. This may be updated
+            in future versions. 
+
+        </p>
+
+    </div>
+
+    <div id="webblock" class="subtabinfo"> 
+        <h1>Website List</h1>
+        
+        <div id="folders">
+            <div class="dropdown">
+                <button onclick="dropdown()" id="dropbutton" class="dropbtn">Select Folder</button>
+                <div id="myDropdown" class="dropdown-content">
+                <a href="#" id="coding" onclick="renameDropdown1()">Coding</a>
+                <a href="#" id="school" onclick="renameDropdown2()">School</a>
+                <a href="#" id="socialmedia" onclick="renameDropdown3()">Social Media</a>
+                <a href="#" id="entertainment" onclick="renameDropdown4()">Entertainment</a>
+                <a href="#" id="miscellaneous" onclick="renameDropdown5()">Miscellaneous</a>
+                </div>
+            </div>
+            
+            <div class="inputurls">
+                <div id="url">
+                    <p>Input URL Here: </p>
+                    <p id="incorrect"> </p>
+                </div>
+                <div id="urlinput">
+                    <div>
+                    <input id="inputtext" type="text" placeholder="e.g. www.example.com" width="50" height="30">
+                    </div>
+
+                    <div>
+                    <button id="urlbutton" type="submit" style="width:70px; height:30px" disabled>Add</button>
+                    </div>
+
+                    <div>
+                        <button id="clear" type="submit" style="width:100px; height:50px; color: red">Clear All Added Websites</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="container">
+            <hr id="line">
+            <p id="nowebsites">You don't currently have any added websites.</p>
+            
+        </div>
+    </div>
+
+    <div id="settings" class="subtabinfo"> 
+        <h1>Configure</h1>
+        <p>Customize your time:</p>
+        <p> TO BE COMPLETED</p>
+
+    </div>
+
+</head>
