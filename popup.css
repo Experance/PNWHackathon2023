@@ -1,7 +1,7 @@
 body{
     height: 450px;
     width: 280px;
-    overflow:auto;
+    overflow:scroll;
 }
 
 div.folder{
@@ -27,22 +27,9 @@ div.folder{
     font-weight:bold;
     font-size:large;
 }
-.homepage{
-    text-align:center;
-    font-size:x-large;
-    font-weight:bold;
-
-}
 .continue{
     font-weight:100;
     font-size:small;
-    padding-top: 3cm;
-    padding-bottom: 3cm;
-}
-.header{
-    display:flex;
-    justify-content:space-between;
-    flex-direction: row;
 }
 
 /* styling for top of popup (img and settings btn) */
@@ -50,11 +37,14 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position:sticky;
+
 }
 
 /* styles the settings button */
 #settings {
     opacity: 0.5;
+    padding-left:6.8cm;
 }
 
 /* styles the settings button on hover */

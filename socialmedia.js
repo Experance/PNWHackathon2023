@@ -1,9 +1,7 @@
-
 window.onload = function(){
     document.getElementById("back").onclick = goBack;
     document.getElementById("openselect").onclick = selected;
     document.getElementById("openall").onclick = allSelected;
-    document.getElementById("clear").onclick = removeLinks;
     chrome.storage.sync.get("listwebs", printLinks(data));
 }
 
@@ -30,7 +28,7 @@ function allSelected(){
 }
 function minusSpan(str){
     // If statement used so user can't delete extra divs.
-    document.getElementsByTagName().getElementById(str).remove();
+    console.log(document.getElementsByTagName().getElementById(str).remove())
     /*
     chrome.storage.sync.get("listwebs", function(data){
         for(var j = 0; j < data.listwebs.length; j++){
@@ -41,17 +39,10 @@ function minusSpan(str){
    
     
 }
-function removeLinks(){
-    chrome.storage.sync.clear();
-    let list = document.getElementsByTagName("span");
-    for(var i = 0; i < list.length; i++){
-        list[i].remove();
-    }
-}
 function printLinks(data){
     var websiteList = data.listwebs;
     for(var i = 0; i < websiteList.length; i++){
-        if(websiteList[i].type == "code"){
+        if(websiteList[i].type == "socialmedia"){
             let spanElement = document.createElement("span");
             let inputElement = document.createElement("input");
             let labelElement = document.createElement("label");

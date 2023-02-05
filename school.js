@@ -2,7 +2,7 @@ window.onload = function(){
     document.getElementById("back").onclick = goBack;
     document.getElementById("openselect").onclick = selected;
     document.getElementById("openall").onclick = allSelected;
-    //chrome.storage.sync.get("listwebs", printLinks(data));
+    chrome.storage.sync.get("listwebs", printLinks(data));
 }
 
 function goBack(){
@@ -40,6 +40,34 @@ function minusSpan(str){
     
 }
 function printLinks(data){
+    var websiteList = data.listwebs;
+    for(var i = 0; i < websiteList.length; i++){
+        if(websiteList[i].type == "school"){
+            let spanElement = document.createElement("span");
+            let inputElement = document.createElement("input");
+            let labelElement = document.createElement("label");
+            let divElement = document.createElement("div");
+            let brElement = document.createElement("br");
     
+            spanElement.id = websiteList[i].url;
+            inputElement.type = "checkbox";
+            inputElement.id = i;
+            inputElement.className = "check";
+            labelElement.htmlFor = "i";
+            labelElement.className = "links";
+            labelElement.textContent = websiteList[i].url;
+            divElement.className = "delete";
+            divElement.id = websiteList[i].url;
+    
+            document.body.appendChild(spanElement);
+            spanElement.prepend(inputElement);
+            spanElement.appendChild(labelElement);
+            labelElement.appendChild(divElement);
+            document.body.appendChild(brElement);
+        }
+       
+
+    }
 }
+
 

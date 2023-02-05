@@ -23,7 +23,7 @@ div.buttons{
 }
 #back:hover{
     transform: translateX(-3px);
-    transition-duration: 0.8s;
+    transition-duration: 1s;
 }
 #back:active{
     background:transparent;
@@ -79,6 +79,7 @@ div.delete:hover{
     color:red;
     cursor:pointer;
 }
+
 .top{
     display:flex;
     justify-content:space-between;

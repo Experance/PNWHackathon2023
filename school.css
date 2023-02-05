@@ -2,7 +2,7 @@ body{
     height: 450px;
     width: 280px;
     overflow:scroll;
-    background-color:bisque;
+    background:linear-gradient(white, rgb(253, 206, 148));
 }
 div.buttons{
     display:flex;
@@ -79,4 +79,24 @@ div.delete:hover{
     color:red;
     cursor:pointer;
 }
-
+.top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+#clear{
+    color:red;
+    background:linear-gradient(-20deg, bisque 0%,rgb(249, 188, 113) 100%);
+    border-color:transparent;
+    font-size:large;
+}
+#clear:hover{
+    font-size:medium;
+    transition-duration: 0.7s;
+}
+#clear:active{
+    background:transparent;
+    border-color:transparent;
+    transition-duration: 0.7s;
+    color:red;
+}
