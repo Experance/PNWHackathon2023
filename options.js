@@ -1,5 +1,5 @@
 function $(x) {return document.getElementById(x);} //cuz i can lol
-
+var thetype = "";
 window.onload=function() {
     printAllWebs();
 
@@ -42,41 +42,73 @@ window.onload=function() {
     })  
 
     //clears all entries
-    $("clear").onclick = clearAllEntries;
+    $("clear").addEventListener("click", (event) => {
+        clearAllEntries(thetype);
+        removeElementsByClass("toremove");
+    })
 
     
 
    
     document.getElementById("coding").addEventListener("click", (event) => {
         document.getElementById("dropbutton").innerHTML = "Coding";
+        removeElementsByClass("toremove");
+        printAllWebs("coding");
+        thetype = "coding";
     });
     document.getElementById("school").addEventListener("click", (event) => {
         document.getElementById("dropbutton").innerHTML = "School";
+        removeElementsByClass("toremove");
+        printAllWebs("school");
+        thetype = "school";
     });
     document.getElementById("socialmedia").addEventListener("click", (event) => {
         document.getElementById("dropbutton").innerHTML = "Social Media";
+        removeElementsByClass("toremove");
+        printAllWebs("socialmedia");
+        thetype = "socialmedia";
     });
     document.getElementById("entertainment").addEventListener("click", (event) => {
         document.getElementById("dropbutton").innerHTML = "Entertainment";
+        removeElementsByClass("toremove");
+        printAllWebs("entertainment");
+        thetype = "entertainment";
     });
     document.getElementById("miscellaneous").addEventListener("click", (event) => {
         document.getElementById("dropbutton").innerHTML = "Miscellaneous";
+        removeElementsByClass("toremove");
+        printAllWebs("miscellaneous");
+        thetype = "miscellaneous";
     });
       
 }
 
-function clearAllEntries() {
-    chrome.storage.sync.clear("list");
-    websiteList = ["www.instagram.com", "www.facebook.com", "www.tiktok.com", "www.youtube.com"];
-    chrome.storage.sync.set({"list": websiteList});
-    $("container").innerHTML = "";
-    let line = document.createElement("hr");
-    line.id = "line";
-    $("container").appendChild(line)
-    for (var i = 0; i < 4; i++) {
-        addWebsList(websiteList[i]);
-    }
-    $("incorrect").innerHTML = "Please note, the first 4 entries are not removable";
+function clearAllEntries(type) {
+    
+    chrome.storage.sync.get("listwebs", (data) => {
+        var websiteList = data.listwebs;
+        for(var i = 0; i < websiteList.length; i++){
+            if(websiteList[i].type == String(type)){
+                websiteList.splice(i, 1);
+                i = 0;
+            }
+        }
+        chrome.storage.sync.set({"listwebs": websiteList});
+    });
+}
+
+
+function removeData(){
+    chrome.storage.sync.get("listwebs", (data) => {
+        var websiteList = data.listwebs;
+        for(var i = 0; i < websiteList.length; i++){
+            if(websiteList[i].type == "coding"){
+                websiteList.splice(i, 1);
+                i = 0;
+            }
+        }
+        chrome.storage.sync.set({"listwebs": websiteList});
+    });
 }
 // a function to disable or enable a function depending on text inside input box
 function disabledButton() {
@@ -90,42 +122,50 @@ function disabledButton() {
 }
 
 // a function to deal with inputed data
-function websiteInput() {
-    $("incorrect").innerHTML = "";
-    var holdURL = $("inputtext").value;
-    // take data and put in database, put in options.html data list
-    if (typeof(Storage) !== "undefined") {
-        chrome.storage.sync.get("listwebs", (result) => {
-            if(chrome.runtime.error) {
-                console.log("Runtime error.");
-            } else if (typeof result.listwebs === "undefined") {      
-                console.log("result.listwebs is undefined")    
-            }                                              
-            console.log(result.listwebs);
-            websiteList = result.listwebs;
-            if (holdURL.length >= 3) {
-                $("incorrect").innerHTML = "";
-                websiteList.push(holdURL);
-                chrome.storage.sync.set({"list": websiteList});
-                //https://developer.chrome.com/docs/extensions/mv3/messaging/
-
-                chrome.runtime.sendMessage({addedWeb: true}, function(response) {
-                console.log(response.answer);
-                });
-                 // on clicking submit, 
-                $("inputtext").value = "";
-                $("urlbutton").disabled = true;
-                addWebsList(holdURL);
-            } else {
-                $("incorrect").innerHTML = "Please input an actual website.";
-            }
-            
-        });
-        
+function websiteInput(type) {
+    if (thetype == "") {
+        alert("Please select a folder")
+        $("inputtext").value = "";
     } else {
-        //prob gotta use a txt file and traversing
-    }
-    // prints out websites onto page https://w3schools.com/js/js_htmldom_nodes.asp
+    
+        $("incorrect").innerHTML = "";
+        var holdURL = $("inputtext").value;
+        // take data and put in database, put in options.html data list
+        if (typeof(Storage) !== "undefined") {
+            chrome.storage.sync.get("listwebs", (result) => {
+                if(chrome.runtime.error) {
+                    console.log("Runtime error.");
+                } else if (typeof result.listwebs === "undefined") {      
+                    console.log("result.listwebs is undefined")    
+                }                                              
+                console.log(result.listwebs);
+                websiteList = result.listwebs;
+                if (holdURL.length >= 3) {
+                    $("incorrect").innerHTML = "";
+                    var object = {
+                        title: "",
+                        url: String(holdURL),
+                        type: "thetype",
+                    }
+                    websiteList.push(object);
+                    chrome.storage.sync.set({"listwebs": websiteList});
+                    //https://developer.chrome.com/docs/extensions/mv3/messaging/
+
+                    chrome.runtime.sendMessage({addedWeb: true}, function(response) {
+                    console.log(response.answer);
+                    });
+                    // on clicking submit, 
+                    $("inputtext").value = "";
+                    $("urlbutton").disabled = true;
+                    addWebsList(holdURL);
+                } else {
+                    $("incorrect").innerHTML = "Please input an actual website.";
+                }
+                
+            });
+        }
+        
+    } 
     
    
   
@@ -179,24 +219,36 @@ function addWebsList(websites) {
     (temp) ? $("nowebsites").remove() : temp;
     temp = false;
     const hr = document.createElement("hr");
+    hr.className = "toremove";
     const span = document.createElement("span");
+    span.className = "toremove";
     const node = document.createTextNode(websites);
+    node.className = "toremove";
     span.appendChild(node);
    
     $("line").appendChild(span);
     const button = document.createElement("button");
+    button.className = "toremove";
     button.style.width = "50px";
     button.style.height = "50px";
     //
     $("line").appendChild(hr);
 }
 
-
-function printAllWebs() {
+// remove all spaces from a string -> string.split(" ").join("")
+function printAllWebs(type) {
     chrome.storage.sync.get("listwebs", (result) => {
         var websiteList = result.listwebs;
         for (var i = 0; i < websiteList.length; i++) {
-            addWebsList(websiteList[i].url);
+            //console.log(String(document.getElementById("dropbutton").innerHTML.split(" ").join("").toLowerCase()))
+            // if (websiteList[i].type == String(document.getElementById("dropbutton").innerHTML.split(" ").join("").toLowerCase())) {
+            //     addWebsList(websiteList[i].url);
+            //     console.log("___________________________-yes")
+            // }
+            if (websiteList[i].type == String(type)) {
+                addWebsList(websiteList[i].url);
+            }
+
         }
             /*
             if (websiteList.length <= 5) {
@@ -237,7 +289,14 @@ function dropdown() {
 });
 
 
-  
+
+
+function removeElementsByClass(className){
+    const elements = document.getElementsByClassName(className);
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    }
+} 
  
 
 

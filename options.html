@@ -27,13 +27,11 @@
     <div id="AboutPage" class="subtabinfo"> 
         <h1>About Page</h1>
         <p id="explain">This extension allows you to organize websites you encounter. Currently, there are 5 pre-built 
-            folders and they are Coding, School, Social Media, Entertainment, and Miscellaneous. You may add folders that 
-            you want to the popup itself. 
+            folders and they are Coding, School, Social Media, Entertainment, and Miscellaneous. 
             
             To add/remove links to/from folders, you can either use this webpage (click on the 
-            "Websites Added") tab or right click and add/remove from the Linkpiler context menu. However, right clicking to
-            add/remove websites will only work for the pre-built folders due to the fact that it was much too complicated to 
-            add that functionality to user-added folders with the time alloted to finish this project. This may be updated
+            "Add/Remove Websites") tab or right click and add/remove from the Linkpiler context menu. Unfortunately,
+            this extension does not currently supported custom folders. That functionality will be added
             in future versions. 
 
         </p>
@@ -57,19 +55,19 @@
             
             <div class="inputurls">
                 <div id="url">
-                    <p>Input URL Here: </p>
+                    <p style="font-size: 20px;">Add URL to Folder: </p>
                     <p id="incorrect"> </p>
                 </div>
                 <div id="urlinput">
-                    <div>
+                    <div id="theinput">
                     <input id="inputtext" type="text" placeholder="e.g. www.example.com" width="50" height="30">
                     </div>
 
-                    <div>
+                    <div id="addurls">
                     <button id="urlbutton" type="submit" style="width:70px; height:30px" disabled>Add</button>
                     </div>
 
-                    <div>
+                    <div id="clearall">
                         <button id="clear" type="submit" style="width:100px; height:50px; color: red">Clear All Added Websites</button>
                     </div>
                 </div>
@@ -84,7 +82,7 @@
 
     <div id="settings" class="subtabinfo"> 
         <h1>Configure</h1>
-        <p>Customize your time:</p>
+        <p>Focus Mode:</p>
         <p> TO BE COMPLETED</p>
 
     </div>
