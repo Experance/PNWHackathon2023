@@ -1,0 +1,46 @@
+body{
+    height: 450px;
+    width: 280px;
+    background:linear-gradient(rgb(253, 206, 148), white);
+}
+.homepage{
+    font-size:xx-large;
+    font-weight: bold;
+}
+.continue{
+    font-weight:300;
+    font-size:small;
+    padding-top:2cm;
+    text-align:center;
+}
+
+/* styling for top of popup (img and settings btn) */
+header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+
+/* styles the settings button */
+#settings {
+    opacity: 0.5;
+    padding-left: 6.5cm;
+}
+
+/* styles the settings button on hover */
+#settings:hover {
+   opacity: 1;
+   
+    
+} 
+
+/* styles the settings button when active */
+#settings:active {
+    
+    transition-duration: 0s;
+    transform: translateY(2px);
+    
+}

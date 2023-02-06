@@ -54,7 +54,7 @@ function removeData(){
     chrome.storage.sync.get("listwebs", (data) => {
         var websiteList = data.listwebs;
         for(var i = 0; i < websiteList.length; i++){
-            if(websiteList[i].type == "school"){
+            if(websiteList[i].type == "entertainment"){
                 websiteList.splice(i, 1);
                 i = 0;
             }
@@ -65,7 +65,7 @@ function removeData(){
 function printLinks(data){
     var websiteList = data.listwebs;
     for(var i = 0; i < websiteList.length; i++){
-        if(websiteList[i].type == "school"){
+        if(websiteList[i].type == "entertainment"){
             let spanElement = document.createElement("span");
             let inputElement = document.createElement("input");
             let labelElement = document.createElement("label");
@@ -86,7 +86,7 @@ function printLinks(data){
             divElement.className = "delete";
             divElement.id = websiteList[i].url;
             divElement.textContent = "x";
-
+    
             document.body.appendChild(spanElement);
             spanElement.prepend(inputElement);
             spanElement.appendChild(labelElement);
@@ -96,6 +96,7 @@ function printLinks(data){
        
 
     }
+    
 }
 
 
