@@ -2,7 +2,10 @@ window.onload = function(){
     document.getElementById("back").onclick = goBack;
     document.getElementById("openselect").onclick = selected;
     document.getElementById("openall").onclick = allSelected;
-    chrome.storage.sync.get("listwebs", printLinks(data));
+    document.getElementById("clear").onclick = removeLinks;
+    chrome.storage.sync.get("listwebs", (data) => {
+        printLinks(data);
+    });
 }
 
 function goBack(){
@@ -11,18 +14,18 @@ function goBack(){
 
 function selected(){
     let check = document.getElementsByClassName("check");
-    let links = document.getElementsByClassName("links");
+    let links = document.getElementsByClassName("delete");
     for (var i = 0; i < links.length; i++){
         if(check[i].checked){
-            let str = "https://" + links[i].innerHTML;
+            let str = links[i].id;
             window.open(str, "_blank");
         }
     }
 }
 function allSelected(){
-    let links = document.getElementsByClassName("links");
+    let links = document.getElementsByClassName("delete");
     for (var i = 0; i < links.length; i++){
-        let str = "https://" + links[i].innerHTML;
+        let str = links[i].id;
         window.open(str, "_blank");
     }
 }
@@ -39,6 +42,26 @@ function minusSpan(str){
    
     
 }
+function removeLinks(){
+    let list = document.getElementsByTagName("span");
+    let len = list.length;
+    for(var i = 0; i < len; i++){
+        list[0].remove();
+    }
+    removeData();
+}
+function removeData(){
+    chrome.storage.sync.get("listwebs", (data) => {
+        var websiteList = data.listwebs;
+        for(var i = 0; i < websiteList.length; i++){
+            if(websiteList[i].type == "school"){
+                websiteList.splice(i, 1);
+                i = 0;
+            }
+        }
+        chrome.storage.sync.set({"listwebs": websiteList});
+    });
+}
 function printLinks(data){
     var websiteList = data.listwebs;
     for(var i = 0; i < websiteList.length; i++){
@@ -53,12 +76,17 @@ function printLinks(data){
             inputElement.type = "checkbox";
             inputElement.id = i;
             inputElement.className = "check";
-            labelElement.htmlFor = "i";
+            labelElement.htmlFor = i;
             labelElement.className = "links";
-            labelElement.textContent = websiteList[i].url;
+            if(websiteList[i].url.length > 31){
+                labelElement.textContent = websiteList[i].url.substring(0,31) + "...";
+            }else{
+                labelElement.textContent = websiteList[i].url;
+            }
             divElement.className = "delete";
             divElement.id = websiteList[i].url;
-    
+            divElement.textContent = "x";
+
             document.body.appendChild(spanElement);
             spanElement.prepend(inputElement);
             spanElement.appendChild(labelElement);
