@@ -2,7 +2,6 @@ body{
     height: 450px;
     width: 280px;
     background:linear-gradient(rgb(253, 206, 148), white);
-    border-color:black;
 }
 .homepage{
     font-size:xx-large;
