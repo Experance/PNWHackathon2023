@@ -4,6 +4,10 @@ body{
     overflow:scroll;
 }
 
+#addfolder{
+    border-radius:1rem;
+}
+
 div.folder{
     padding-right:3cm;
     padding-top:0cm;
@@ -32,6 +36,7 @@ div.folder{
     font-size:small;
 }
 
+
 /* styling for top of popup (img and settings btn) */
 header {
     display: flex;
@@ -44,7 +49,7 @@ header {
 /* styles the settings button */
 #settings {
     opacity: 0.5;
-    padding-left:6.8cm;
+    justify-content:right;
 }
 
 /* styles the settings button on hover */
@@ -53,7 +58,12 @@ header {
    
     
 } 
-
+#addfolder{
+    opacity: 0.5;
+}
+#addfolder:hover{
+    opacity: 1;
+}
 /* styles the settings button when active */
 #settings:active {
     

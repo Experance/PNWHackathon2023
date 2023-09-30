@@ -107,7 +107,11 @@ chrome.runtime.onInstalled.addListener((reason) => {
     "title": "Remove from 'Miscellaneous'",
     "contexts": ["all"],
   }
-
+  var removeFolder = {
+    "id": "removeFolder",
+    "title": "Remove Folder",
+    "contexts": ["all"]
+  }
 
   // adds that context menu
   //   chrome.contextMenus.create(contextMenuMain);
@@ -122,7 +126,7 @@ chrome.runtime.onInstalled.addListener((reason) => {
   chrome.contextMenus.create(removeSocialMedia);
   chrome.contextMenus.create(removeEntertainment);
   chrome.contextMenus.create(removeMiscellaneous);
-
+  chrome.contextMenus.create(removeFolder);
 });
 
 
@@ -710,6 +714,8 @@ chrome.contextMenus.onClicked.addListener((event, tab) => {
     //   type: "basic"
     // }
     // chrome.notifications.create("addWebNotif", added, () => {});
+  }else if(event.menuItemId == "removeFolder"){
+    removeFolder();
   };
   checkForNeededContextMenu(tab);
   // fires onupdated by doing this action
@@ -770,6 +776,11 @@ function addsSite(type) {
   });
 }
 
+//removeFolderinExtension
+
+function removeFolder(){
+  chrome.runtime.sendMessage("Remove")
+}
 
 // removes a site of given type
 function removesSite(type) {

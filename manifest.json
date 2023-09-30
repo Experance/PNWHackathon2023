@@ -7,6 +7,14 @@
     "action": { 
         "default_popup": "home.html"
     },
+    "content_scripts": [
+        {
+          "matches": ["http://*/*"],
+          "css":["popup.css"],
+          "js": ["popup.js"]
+        }
+      ],
+   
     "background": {
         "service_worker": "background.js"  
     }
